@@ -8,7 +8,7 @@ use App\Common\Presentation\Response\ResponderInterface as PresentationResponder
 use App\Common\Presentation\Response\ResponderRenderFailedException;
 use Symfony\Component\HttpFoundation\Response;
 
-final class ResponderManager implements PresentationResponderInterface
+final class Responder implements PresentationResponderInterface
 {
     /**
      * @var ResponderInterface[]
