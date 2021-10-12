@@ -6,7 +6,6 @@ namespace App\Frontoffice\Presentation\Action;
 
 use App\Common\Infrastructure\Twig\Template;
 use App\Common\Presentation\Action\AbstractAction;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,9 +15,9 @@ final class HomeAction extends AbstractAction
 {
     public const ROUTE_NAME = 'home';
 
-    public function __invoke(Request $request): Response
+    public function __invoke(): Response
     {
-        return $this->render($request, [
+        return $this->render([
             'profile' => [
                 'name' => 'Yannis Sgarra',
             ],

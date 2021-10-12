@@ -4,27 +4,29 @@ declare(strict_types=1);
 
 namespace App\Common\Infrastructure\Response;
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
 final class HtmlResponder implements ResponderInterface
 {
+    private RequestStack $requestStack;
     private Environment $twig;
 
-    public function __construct(Environment $twig)
+    public function __construct(RequestStack $requestStack, Environment $twig)
     {
+        $this->requestStack = $requestStack;
         $this->twig = $twig;
     }
 
-    public function supports(Request $request): bool
+    public function supports(): bool
     {
-        return 'html' === $request->getPreferredFormat() && null !== $request->attributes->get('_template_path') ? true : false;
+        return 'html' === $this->requestStack->getCurrentRequest()->getPreferredFormat() && null !== $this->requestStack->getCurrentRequest()->attributes->get('_template_path') ? true : false;
     }
 
-    public function render(Request $request, array $data = []): Response
+    public function render(array $data = []): Response
     {
-        $html = $this->twig->render($request->attributes->get('_template_path'), $data);
+        $html = $this->twig->render($this->requestStack->getCurrentRequest()->attributes->get('_template_path'), $data);
 
         return new Response($html);
     }

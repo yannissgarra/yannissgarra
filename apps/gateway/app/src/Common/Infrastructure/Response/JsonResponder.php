@@ -5,28 +5,29 @@ declare(strict_types=1);
 namespace App\Common\Infrastructure\Response;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class JsonResponder implements ResponderInterface
 {
+    private RequestStack $requestStack;
     private SerializerInterface $serializer;
 
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(RequestStack $requestStack, SerializerInterface $serializer)
     {
+        $this->requestStack = $requestStack;
         $this->serializer = $serializer;
     }
 
-    public function supports(Request $request): bool
+    public function supports(): bool
     {
-        return JsonEncoder::FORMAT === $request->getPreferredFormat();
+        return 'json' === $this->requestStack->getCurrentRequest()->getPreferredFormat();
     }
 
-    public function render(Request $request, array $data = []): Response
+    public function render(array $data = []): Response
     {
-        $json = $this->serializer->serialize($data, JsonEncoder::FORMAT);
+        $json = $this->serializer->serialize($data, 'json');
 
         return new JsonResponse($json, 200, [], true);
     }

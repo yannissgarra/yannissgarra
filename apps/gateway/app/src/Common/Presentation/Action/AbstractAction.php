@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Common\Presentation\Action;
 
 use App\Common\Presentation\Response\ResponderInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class AbstractAction implements ActionInterface
@@ -17,8 +16,8 @@ abstract class AbstractAction implements ActionInterface
         $this->responder = $responder;
     }
 
-    public function render(Request $request, array $data = []): Response
+    public function render(array $data = []): Response
     {
-        return $this->responder->render($request, $data);
+        return $this->responder->render($data);
     }
 }
