@@ -28,15 +28,19 @@ services:
             tags:
                 - {name: 'controller.service_arguments'}
 
+        App\Common\Infrastructure\Response\ResponderInterface:
+            tags:
+                - {name: 'app.responder'}
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     App\Common\Infrastructure\Response\JsonResponder:
         tags:
-            - {name: 'app.responder', priority: 2}
+            - {name: 'app.responder', priority: 20}
 
     App\Common\Infrastructure\Response\HtmlResponder:
         tags:
-            - {name: 'app.responder', priority: 1}
+            - {name: 'app.responder', priority: 10}
 
     App\Common\Infrastructure\Response\ResponderManager:
         arguments:
