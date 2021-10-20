@@ -19,29 +19,6 @@ services:
             - '../src/Kernel.php'
             - '../src/Entity/'
 
-    _instanceof:
-        # controllers are imported separately to make sure services can be injected
-        # as action arguments even if you don't extend any base controller class
-        App\Common\Presentation\Action\ActionInterface:
-            calls:
-                - setResponder: ['@App\Common\Presentation\Response\ResponderInterface']
-            tags:
-                - {name: 'controller.service_arguments'}
-
-        App\Common\Infrastructure\Response\ResponderInterface:
-            tags:
-                - {name: 'app.responder'}
-
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\Common\Infrastructure\Response\JsonResponder:
-        tags:
-            - {name: 'app.responder', priority: 20}
-
-    App\Common\Infrastructure\Response\HtmlResponder:
-        tags:
-            - {name: 'app.responder', priority: 10}
-
-    App\Common\Infrastructure\Response\Responder:
-        arguments:
-            - !tagged_iterator app.responder
+    

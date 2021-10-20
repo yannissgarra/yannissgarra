@@ -591,5 +591,8 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
+    },
+    "webmunkeez/adr-bundle": {
+        "version": "v1.0.5"
     }
 }

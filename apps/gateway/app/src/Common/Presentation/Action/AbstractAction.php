@@ -1,23 +1,26 @@
 <?php
 
+/*
+ * (c) Yannis Sgarra <hello@yannissgarra.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace App\Common\Presentation\Action;
 
-use App\Common\Presentation\Response\ResponderInterface;
-use Symfony\Component\HttpFoundation\Response;
+use Webmunkeez\AdrBundle\Action\ActionInterface;
+use Webmunkeez\AdrBundle\Action\ActionTrait;
+use Webmunkeez\AdrBundle\Response\ResponderAwareInterface;
+use Webmunkeez\AdrBundle\Response\ResponderAwareTrait;
 
-abstract class AbstractAction implements ActionInterface
+/**
+ * @author Yannis Sgarra <hello@yannissgarra.com>
+ */
+abstract class AbstractAction implements ActionInterface, ResponderAwareInterface
 {
-    private ResponderInterface $responder;
-
-    public function setResponder(ResponderInterface $responder): void
-    {
-        $this->responder = $responder;
-    }
-
-    public function render(array $data = []): Response
-    {
-        return $this->responder->render($data);
-    }
+    use ResponderAwareTrait;
+    use ActionTrait;
 }

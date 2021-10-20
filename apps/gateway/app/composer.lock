@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f48257025c1c89c47b3f6af7247b7beb",
+    "content-hash": "21b51ebcd6fdec85b1b95e0be7df4dd2",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -7652,6 +7652,80 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.10.0"
             },
             "time": "2021-03-09T10:59:23+00:00"
+        },
+        {
+            "name": "webmunkeez/adr-bundle",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yannissgarra/adr-bundle.git",
+                "reference": "661aa6ebc82a8079fd793f2716c7829acf43709b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yannissgarra/adr-bundle/zipball/661aa6ebc82a8079fd793f2716c7829acf43709b",
+                "reference": "661aa6ebc82a8079fd793f2716c7829acf43709b",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "^1.0",
+                "php": ">=7.4.0",
+                "symfony/config": "^5.0",
+                "symfony/dependency-injection": "^5.0",
+                "symfony/http-foundation": "^5.0",
+                "symfony/http-kernel": "^5.0",
+                "symfony/serializer": "^5.0",
+                "twig/twig": "^3.0"
+            },
+            "require-dev": {
+                "phpdocumentor/reflection-docblock": "^5.0",
+                "phpunit/phpunit": "^9.0",
+                "symfony/browser-kit": "^5.0",
+                "symfony/css-selector": "^5.0",
+                "symfony/framework-bundle": "^5.0",
+                "symfony/phpunit-bridge": "^5.0",
+                "symfony/property-access": "^5.0",
+                "symfony/property-info": "^5.0",
+                "symfony/twig-bundle": "^5.0",
+                "symfony/yaml": "^5.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmunkeez\\AdrBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yannis Sgarra",
+                    "email": "hello@yannissgarra.com",
+                    "homepage": "https://yannissgarra.com"
+                }
+            ],
+            "description": "Action-Domain-Responder pattern made for Symfony.",
+            "homepage": "https://github.com/yannissgarra/adr-bundle",
+            "keywords": [
+                "Autowiring",
+                "action",
+                "controllers",
+                "responder",
+                "symfony",
+                "templates"
+            ],
+            "support": {
+                "issues": "https://github.com/yannissgarra/adr-bundle/issues",
+                "source": "https://github.com/yannissgarra/adr-bundle/tree/v1.0.5"
+            },
+            "time": "2021-10-20T18:10:25+00:00"
         }
     ],
     "packages-dev": [
@@ -9936,5 +10010,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
