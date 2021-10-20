@@ -21,7 +21,6 @@ services:
       - gateway-postgres
     volumes:
       - ./apps/gateway/app:/www/gateway:delegated
-      - ./docker/symfony/log:/var/log:delegated
       - ./apps/file-manager:/www/file-manager:delegated
 
   gateway-postgres:
@@ -33,4 +32,4 @@ services:
     volumes:
       - ./docker/postgres/data:/var/lib/postgresql/data:delegated
     ports:
-      - 3002:5432
+      - 5432:5432
