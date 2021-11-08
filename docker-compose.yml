@@ -1,34 +1,22 @@
 version: '3.9'
 
 services:
-  nginx:
+  gateway:
     build:
-      context: ./docker/nginx
+      context: ./docker/gateway
     depends_on:
-      - gateway-symfony
+      - postgres
     volumes:
-      - ./apps/gateway/app:/www/gateway:delegated
-      - ./apps/file-manager:/www/file-manager:delegated
-      - ./docker/nginx/log:/var/log/nginx:delegated
+      - .:/www:delegated
     ports:
-      - 3000:3000
-      - 3001:3001
+      - 8000:8000
 
-  gateway-symfony:
-    build:
-      context: ./docker/symfony
-    depends_on:
-      - gateway-postgres
-    volumes:
-      - ./apps/gateway/app:/www/gateway:delegated
-      - ./apps/file-manager:/www/file-manager:delegated
-
-  gateway-postgres:
+  database:
     image: postgres:14
     environment:
-      POSTGRES_USER: gateway_user
-      POSTGRES_PASSWORD: gateway_password
-      POSTGRES_DB: gateway_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
     volumes:
       - ./docker/postgres/data:/var/lib/postgresql/data:delegated
     ports:

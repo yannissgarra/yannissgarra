@@ -1,0 +1,16 @@
+{
+  "name": "Yannis Sgarra - Gateway",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "gateway",
+  "workspaceFolder": "/www",
+  "shutdownAction": "none",
+  "extensions": [
+    "esbenp.prettier-vscode",
+    "bmewburn.vscode-intelephense-client",
+    "mehedidracula.php-namespace-resolver",
+    "phproberto.vscode-php-getters-setters",
+    "junstyle.php-cs-fixer",
+    "neilbrayfield.php-docblocker",
+    "mblode.twig-language-2"
+  ]
+}
