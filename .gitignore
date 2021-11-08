@@ -3,8 +3,8 @@
 ###< base ###
 
 ###> docker ###
-/docker/*/data/
-/docker/*/log/
+/docker/**/data/
+/docker/**/log/
 ###< docker ###
 
 ###> symfony/framework-bundle ###
