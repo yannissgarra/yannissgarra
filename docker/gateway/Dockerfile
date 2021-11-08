@@ -7,6 +7,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends libicu-dev libp
 # copy php ini configuration
 COPY ./php/conf.d/php.ini /usr/local/etc/php/conf.d/docker-php.ini
 
+# install xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+COPY ./php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/docker-xdebug.ini
+
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && chmod a+x /usr/local/bin/composer

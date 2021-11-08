@@ -9,8 +9,9 @@
     "bmewburn.vscode-intelephense-client",
     "mehedidracula.php-namespace-resolver",
     "phproberto.vscode-php-getters-setters",
-    "junstyle.php-cs-fixer",
     "neilbrayfield.php-docblocker",
+    "junstyle.php-cs-fixer",
+    "felixfbecker.php-debug",
     "mblode.twig-language-2"
   ]
 }
