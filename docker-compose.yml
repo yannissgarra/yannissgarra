@@ -5,7 +5,7 @@ services:
     build:
       context: ./docker/gateway
     depends_on:
-      - postgres
+      - database
     volumes:
       - .:/www:delegated
     ports:
