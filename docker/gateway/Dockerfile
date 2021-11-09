@@ -1,7 +1,7 @@
 FROM php:8.0-fpm
 
 # install general dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends libicu-dev libpq-dev \
+RUN apt-get update && apt-get install -y --no-install-recommends git libicu-dev libpq-dev \
     && docker-php-ext-install opcache intl pdo pdo_pgsql
 
 # copy php ini configuration
