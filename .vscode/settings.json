@@ -19,5 +19,6 @@
     "[json]": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "thunder-client.loadFromProject": true
 }

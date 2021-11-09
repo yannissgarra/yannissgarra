@@ -12,6 +12,7 @@
     "neilbrayfield.php-docblocker",
     "junstyle.php-cs-fixer",
     "felixfbecker.php-debug",
-    "mblode.twig-language-2"
+    "mblode.twig-language-2",
+    "rangav.vscode-thunder-client"
   ]
 }
