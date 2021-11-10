@@ -12,9 +12,6 @@
             "pathMappings": {
                 "/www": "${workspaceFolder}"
             },
-            "ignore": [
-                "**/vendor/**/*.php"
-            ],
         }
     ]
 }
