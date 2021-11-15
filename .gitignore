@@ -22,11 +22,6 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
-
 ###> private ###
 /bundles
 /public/uploads
