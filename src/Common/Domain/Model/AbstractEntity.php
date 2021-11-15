@@ -41,7 +41,7 @@ abstract class AbstractEntity
         return $this->id;
     }
 
-    public function setId(Uuid $id): self
+    public function setId(Uuid $id): static
     {
         $this->id = $id;
 
@@ -58,7 +58,7 @@ abstract class AbstractEntity
         return $this->lastUpdatedAt;
     }
 
-    public function updateLastUpdatedAt(): self
+    public function updateLastUpdatedAt(): static
     {
         $this->setLastUpdatedAt(new \DateTime());
 
@@ -72,14 +72,14 @@ abstract class AbstractEntity
         return $this;
     }
 
-    private function setCreatedAt(\DateTime $date): self
+    private function setCreatedAt(\DateTime $date): static
     {
         $this->createdAt = $date;
 
         return $this;
     }
 
-    private function setLastUpdatedAt(\DateTime $date): self
+    private function setLastUpdatedAt(\DateTime $date): static
     {
         $this->lastUpdatedAt = $date;
 
