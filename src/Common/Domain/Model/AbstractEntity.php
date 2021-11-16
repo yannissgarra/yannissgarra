@@ -11,8 +11,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\MappedSuperclass]
 #[UniqueEntity(['id'])]
-abstract class AbstractEntity
+abstract class AbstractEntity implements IdentifiableInterface
 {
+    use IdentifiableTrait;
+
     #[ORM\Id]
     #[ORM\Column(name: 'id', type: 'uuid', unique: true)]
     #[Assert\NotBlank]

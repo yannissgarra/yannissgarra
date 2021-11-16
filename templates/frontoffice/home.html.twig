@@ -1,5 +1,25 @@
 {% extends 'frontoffice/base.html.twig' %}
 
 {% block body %}
-    Name: {{ profile.name }}
+    {% for work in works %}
+        <p>{{ work.title }}</p>
+        <p>{{ work.place.name }}</p>
+        {% if work.description is not null %}<p>{{ work.description }}</p>{% endif %}
+        <p>{{ work.startedAt|date }} -{% if work.stoppedAt is not null %} {{ work.stoppedAt|date }}{% endif %}</p>
+
+        {% for mission in work.missions %}
+            {% if mission.customer is not null %}<p>{{ mission.customer }}</p>{% endif %}
+            <p>{{ mission.description }}</p>
+            <p>{{ mission.role }}</p>
+            <p>{{ mission.environment }}</p>
+            {% if mission.link is not null %}<p>{{ mission.link }}</p>{% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    {% for training in trainings %}
+        <p>{{ training.place.name }}</p>
+        <p>{{ training.title }}</p>
+        <p>{{ training.description }}</p>
+        <p>{{ training.startedAt|date }} - {{ training.stoppedAt|date }}</p>
+    {% endfor %}
 {% endblock %}
