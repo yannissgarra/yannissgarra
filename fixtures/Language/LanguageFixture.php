@@ -11,24 +11,14 @@ class LanguageFixture extends Fixture
 {
     public const DATA = [
         'language-english' => [
-            'id' => 'f11a8fd7-2a35-4f8a-a485-ab24acf214c1',
+            'id' => '7d043a18-6f7b-4bf1-a2dc-1eef7dcac699',
             'title' => 'English',
             'locale' => 'en',
         ],
-        'language-spanish' => [
-            'id' => '99e8cc58-db0d-4ffd-9186-5a3f8c9e94e1',
-            'title' => 'Español',
-            'locale' => 'es',
-        ],
         'language-french' => [
-            'id' => '9854df32-4a08-4f10-93ed-ae72ce52748b',
+            'id' => 'f0d0c1c9-a1f0-4057-a7f6-78e2673e4829',
             'title' => 'Français',
             'locale' => 'fr',
-        ],
-        'language-italian' => [
-            'id' => '47afc681-9a6d-4fef-812e-f9df9a869945',
-            'title' => 'Italiano',
-            'locale' => 'it',
         ],
     ];
 
