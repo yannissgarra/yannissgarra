@@ -16,6 +16,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Common/Domain/Model'
                 prefix: 'App\Common\Domain\Model'
                 alias: App
+            App\Career:
+                is_bundle: false
+                type: attribute
+                dir: '%kernel.project_dir%/src/Career/Domain/Model'
+                prefix: 'App\Career\Domain\Model'
+                alias: AppCareer
             App\Language:
                 is_bundle: false
                 type: attribute
