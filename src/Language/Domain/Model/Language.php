@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(LanguageDoctrineORMRepository::class)]
 #[ORM\Table('lng_language')]
 #[UniqueEntity(['locale'])]
-final class Language extends AbstractEntity
+class Language extends AbstractEntity
 {
     #[ORM\Column(name: 'title', type: 'string')]
     #[Assert\NotBlank]
