@@ -67,7 +67,7 @@ abstract class AbstractEntity implements IdentifiableInterface
         return $this;
     }
 
-    private function generateId(): self
+    private function generateId(): static
     {
         $this->setId(Uuid::v4());
 
