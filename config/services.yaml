@@ -18,10 +18,3 @@ services:
         exclude:
             - '../src/Kernel.php'
             - '../src/Entity/'
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-    _instanceof:
-        App\Common\Infrastructure\Doctrine\Repository\EntityManagerAwareInterface:
-            calls:
-                - setEntityManager: ['@doctrine.orm.entity_manager']

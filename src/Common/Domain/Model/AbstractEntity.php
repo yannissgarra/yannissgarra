@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
+use Webmunkeez\CQRSDoctrineBundle\Model\IdentifiableInterface;
+use Webmunkeez\CQRSDoctrineBundle\Model\IdentifiableTrait;
 
 #[ORM\MappedSuperclass]
 #[UniqueEntity(['id'])]

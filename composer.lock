@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a04f6e542bcc24cee0e669e9ee5df7b",
+    "content-hash": "476234a7b0675cc0227f4e9d45de6720",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -8235,6 +8235,74 @@
                 "source": "https://github.com/yannissgarra/cqrs-bundle/tree/v1.0.0"
             },
             "time": "2021-11-15T15:29:39+00:00"
+        },
+        {
+            "name": "webmunkeez/cqrs-doctrine-bundle",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yannissgarra/cqrs-doctrine-bundle.git",
+                "reference": "52ab353685ada9d01462a5d0601089061110b5af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yannissgarra/cqrs-doctrine-bundle/zipball/52ab353685ada9d01462a5d0601089061110b5af",
+                "reference": "52ab353685ada9d01462a5d0601089061110b5af",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "^2.4",
+                "doctrine/orm": "^2.10",
+                "php": ">=7.4.0",
+                "symfony/config": "^5.3",
+                "symfony/dependency-injection": "^5.3",
+                "symfony/uid": "^5.3",
+                "webmunkeez/cqrs-bundle": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "symfony/framework-bundle": "^5.3",
+                "symfony/phpunit-bridge": "^5.3",
+                "symfony/yaml": "^5.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmunkeez\\CQRSDoctrineBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yannis Sgarra",
+                    "email": "hello@yannissgarra.com",
+                    "homepage": "https://yannissgarra.com"
+                }
+            ],
+            "description": "Doctrine behaviors for Command-Query-Responsibility-Segregation pattern made for Symfony.",
+            "homepage": "https://github.com/yannissgarra/cqrs-doctrine-bundle",
+            "keywords": [
+                "Autowiring",
+                "command",
+                "cqrs",
+                "doctrine",
+                "event",
+                "query",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/yannissgarra/cqrs-doctrine-bundle/issues",
+                "source": "https://github.com/yannissgarra/cqrs-doctrine-bundle/tree/v1.0.0"
+            },
+            "time": "2021-11-18T22:31:32+00:00"
         }
     ],
     "packages-dev": [

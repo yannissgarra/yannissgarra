@@ -6,8 +6,8 @@ namespace App\Career\Infrastructure\Doctrine\Repository;
 
 use App\Career\Domain\Model\MissionTranslation;
 use App\Career\Domain\Repository\MissionTranslationRepositoryInterface;
-use App\Common\Infrastructure\Doctrine\Repository\AbstractDoctrineORMRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Webmunkeez\CQRSDoctrineBundle\Doctrine\Repository\AbstractDoctrineORMRepository;
 
 final class MissionTranslationDoctrineORMRepository extends AbstractDoctrineORMRepository implements MissionTranslationRepositoryInterface
 {

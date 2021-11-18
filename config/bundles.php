@@ -15,4 +15,5 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Webmunkeez\ADRBundle\WebmunkeezADRBundle::class => ['all' => true],
     Webmunkeez\CQRSBundle\WebmunkeezCQRSBundle::class => ['all' => true],
+    Webmunkeez\CQRSDoctrineBundle\WebmunkeezCQRSDoctrineBundle::class => ['all' => true],
 ];

@@ -639,5 +639,8 @@
     },
     "webmunkeez/cqrs-bundle": {
         "version": "v1.0.0"
+    },
+    "webmunkeez/cqrs-doctrine-bundle": {
+        "version": "v1.0.0"
     }
 }

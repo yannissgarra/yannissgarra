@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Common\Query\Model;
 
-use App\Common\Domain\Model\IdentifiableInterface;
-use App\Common\Domain\Model\IdentifiableTrait;
+use Webmunkeez\CQRSDoctrineBundle\Model\IdentifiableInterface;
+use Webmunkeez\CQRSDoctrineBundle\Model\IdentifiableTrait;
 
 abstract class AbstractModel implements IdentifiableInterface
 {

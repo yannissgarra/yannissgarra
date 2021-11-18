@@ -45,7 +45,8 @@
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "webmunkeez/adr-bundle": "^1.0",
-        "webmunkeez/cqrs-bundle": "^1.0"
+        "webmunkeez/cqrs-bundle": "^1.0",
+        "webmunkeez/cqrs-doctrine-bundle": "^1.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Language\Domain\Repository;
 
-use App\Common\Domain\Repository\RepositoryInterface;
+use Webmunkeez\CQRSDoctrineBundle\Repository\WriteRepositoryInterface;
 
-interface LanguageRepositoryInterface extends RepositoryInterface
+interface LanguageRepositoryInterface extends WriteRepositoryInterface
 {
 }

@@ -8,13 +8,13 @@ use App\Career\Query\Model\Activity;
 use App\Career\Query\Model\Place;
 use App\Career\Query\Repository\ActivityRepositoryInterface;
 use App\Career\Query\Repository\MissionRepositoryInterface;
-use App\Common\Infrastructure\Doctrine\Repository\AbstractDoctrineDBALRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Component\Uid\Uuid;
+use Webmunkeez\CQRSDoctrineBundle\Doctrine\Repository\AbstractDoctrineDBALRepository;
 
 final class ActivityDoctrineDBALRepository extends AbstractDoctrineDBALRepository implements ActivityRepositoryInterface
 {
