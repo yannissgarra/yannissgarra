@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "476234a7b0675cc0227f4e9d45de6720",
+    "content-hash": "d43282191b09995a5cd743ad39125119",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -8238,16 +8238,16 @@
         },
         {
             "name": "webmunkeez/cqrs-doctrine-bundle",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yannissgarra/cqrs-doctrine-bundle.git",
-                "reference": "52ab353685ada9d01462a5d0601089061110b5af"
+                "reference": "479adcd2255904329ee18bd6bd5b9c0ea30d4db8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yannissgarra/cqrs-doctrine-bundle/zipball/52ab353685ada9d01462a5d0601089061110b5af",
-                "reference": "52ab353685ada9d01462a5d0601089061110b5af",
+                "url": "https://api.github.com/repos/yannissgarra/cqrs-doctrine-bundle/zipball/479adcd2255904329ee18bd6bd5b9c0ea30d4db8",
+                "reference": "479adcd2255904329ee18bd6bd5b9c0ea30d4db8",
                 "shasum": ""
             },
             "require": {
@@ -8256,6 +8256,7 @@
                 "php": ">=7.4.0",
                 "symfony/config": "^5.3",
                 "symfony/dependency-injection": "^5.3",
+                "symfony/doctrine-messenger": "^5.3",
                 "symfony/uid": "^5.3",
                 "webmunkeez/cqrs-bundle": "^1.0"
             },
@@ -8300,9 +8301,9 @@
             ],
             "support": {
                 "issues": "https://github.com/yannissgarra/cqrs-doctrine-bundle/issues",
-                "source": "https://github.com/yannissgarra/cqrs-doctrine-bundle/tree/v1.0.0"
+                "source": "https://github.com/yannissgarra/cqrs-doctrine-bundle/tree/v1.0.1"
             },
-            "time": "2021-11-18T22:31:32+00:00"
+            "time": "2021-11-18T23:03:41+00:00"
         }
     ],
     "packages-dev": [
