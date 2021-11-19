@@ -26,4 +26,9 @@ RUN curl -L https://cs.symfony.com/download/php-cs-fixer-v3.phar -o php-cs-fixer
     && mv php-cs-fixer /usr/local/bin/php-cs-fixer \
     && chmod a+x /usr/local/bin/php-cs-fixer
 
+# install node 16
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get update && apt-get install -y --no-install-recommends nodejs \
+    && npm install -g yarn
+
 WORKDIR /www

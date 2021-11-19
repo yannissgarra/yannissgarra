@@ -27,3 +27,7 @@
 /public/uploads
 /public/dist
 ###< private ###
+
+###> node ###
+/node_modules
+###< node ###
