@@ -16,4 +16,5 @@ return [
     Webmunkeez\ADRBundle\WebmunkeezADRBundle::class => ['all' => true],
     Webmunkeez\CQRSBundle\WebmunkeezCQRSBundle::class => ['all' => true],
     Webmunkeez\CQRSDoctrineBundle\WebmunkeezCQRSDoctrineBundle::class => ['all' => true],
+    Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
 ];
