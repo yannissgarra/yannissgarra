@@ -13,6 +13,7 @@
     "junstyle.php-cs-fixer",
     "felixfbecker.php-debug",
     "mblode.twig-language-2",
-    "rangav.vscode-thunder-client"
+    "rangav.vscode-thunder-client",
+    "bradlc.vscode-tailwindcss"
   ]
 }

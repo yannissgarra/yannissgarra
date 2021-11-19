@@ -2,18 +2,20 @@
 
 {% block body %}
     {% for work in works %}
-        <p>{{ work.title }}</p>
-        <p>{{ work.place.name }}</p>
-        {% if work.description is not null %}<p>{{ work.description }}</p>{% endif %}
-        <p>{{ work.startedAt|date }} -{% if work.stoppedAt is not null %} {{ work.stoppedAt|date }}{% endif %}</p>
+        <div class="p-4">
+            <p>{{ work.title }}</p>
+            <p>{{ work.place.name }}</p>
+            {% if work.description is not null %}<p>{{ work.description }}</p>{% endif %}
+            <p>{{ work.startedAt|date }} -{% if work.stoppedAt is not null %} {{ work.stoppedAt|date }}{% endif %}</p>
 
-        {% for mission in work.missions %}
-            {% if mission.customer is not null %}<p>{{ mission.customer }}</p>{% endif %}
-            <p>{{ mission.description }}</p>
-            <p>{{ mission.role }}</p>
-            <p>{{ mission.environment }}</p>
-            {% if mission.link is not null %}<p>{{ mission.link }}</p>{% endif %}
-        {% endfor %}
+            {% for mission in work.missions %}
+                {% if mission.customer is not null %}<p>{{ mission.customer }}</p>{% endif %}
+                <p>{{ mission.description }}</p>
+                <p>{{ mission.role }}</p>
+                <p>{{ mission.environment }}</p>
+                {% if mission.link is not null %}<p>{{ mission.link }}</p>{% endif %}
+            {% endfor %}
+        </div>
     {% endfor %}
 
     {% for training in trainings %}
