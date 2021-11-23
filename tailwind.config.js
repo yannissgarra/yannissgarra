@@ -1,11 +1,20 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   mode: 'jit',
   purge: [
     './templates/**/*.html.twig',
     './assets/**/*.js',
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
+    screens: {
+      xs: '414px',
+      ...defaultTheme.screens,
+    },
+    fontFamily: {
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
+    },
     extend: {},
   },
   variants: {

@@ -1,15 +1,44 @@
+{% import "frontoffice/elements.html.twig" as elements %}
+
 <!DOCTYPE html>
-<html>
+<html class="light">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}Yannis Sgarra{% endblock %}</title>
         
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+
+    <body class="min-h-screen flex flex-col text-gray-500 md:text-lg lg:text-xl xl:text-2xl dark:bg-gray-800 dark:text-gray-300">
+        <header class="mx-auto px-2 w-full max-w-screen-xl sm:px-4 md:px-8">
+            <div class="relative h-12 flex items-center border-b border-gray-200 md:h-16 dark:border-gray-600">
+                <a class="h-full flex items-center font-bold tracking-tight xl:text-xl" href="{{ url('home') }}"><span class="text-gray-800 dark:text-white">yannis</span><span class="text-gray-400">sgarra</span></a>
+
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs md:text-base">
+                    <ul class="p-0.5 flex border border-gray-400 rounded-full md:p-1">
+                        <li><a class="w-4 h-4 flex items-center justify-center bg-gray-400 rounded-full text-white md:w-6 md:h-6" href=""><i class="fas fa-sun"></i></a></li>
+                        <li class="ml-1"><a class="w-4 h-4 flex items-center justify-center text-gray-400 md:w-6 md:h-6" href=""><i class="fas fa-moon"></i></a></li>
+                    </ul>
+                </div>
+
+                <nav class="ml-auto h-full text-xs font-medium sm:text-sm md:text-base">
+                    <ul class="h-full flex">
+                        <li>{{ elements.nav_link('nav.about', 'about') }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="w-full flex-grow flex flex-col">
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer class="h-12 md:h-16"></footer>
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}

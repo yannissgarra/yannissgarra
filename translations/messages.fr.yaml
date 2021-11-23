@@ -1,0 +1,10 @@
+nav:
+  about: À Propos
+
+home:
+  action:
+    download_resume: Télécharger mon CV
+
+activity:
+  mission:
+    since: Depuis %date%

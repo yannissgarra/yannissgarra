@@ -1,0 +1,93 @@
+{% macro nav_link(text, routeName) %}
+    <a class="h-full flex items-center border-t-2 border-t-white border-b-2 {% if app.request.attributes.get('_route') == routeName %}border-b-gray-800 text-gray-800{% else %}border-b-white{% endif %} dark:border-t-gray-800 {% if app.request.attributes.get('_route') == routeName %}dark:border-b-white dark:text-white{% else %}dark:border-b-gray-800{% endif %}" href="{{ url(routeName) }}">
+        {{ text|trans }}
+    </a>
+{% endmacro %}
+
+{% macro service_links() %}
+    <ul class="mt-4 flex text-white md:mt-8 xl:mt-12 dark:text-gray-800">
+        <li>{{ _self.service_link('fab fa-github', '') }}</li>
+        <li class="ml-1 md:ml-2">{{ _self.service_link('fab fa-linkedin-in', '') }}</li>
+        <li class="ml-1 md:ml-2">{{ _self.service_link('fab fa-twitter', '') }}</li>
+        <li class="ml-1 md:ml-2">{{ _self.service_link('fas fa-envelope', '') }}</li>
+
+        <li class="ml-1 md:ml-2">
+            <a class="px-2 flex items-center h-full bg-gray-800 rounded text-xs font-bold md:px-4 sm:text-sm md:text-base lg:text-lg dark:bg-white" href="" target="_blank">
+                {{ 'home.action.download_resume' |trans }}
+            </a>
+        </li>
+    </ul>
+{% endmacro %}
+
+{% macro service_link(iconClass, url) %}
+    <a class="flex items-center justify-center w-8 h-8 bg-gray-800 rounded text-xl sm:w-10 sm:h-10 md:w-12 md:h-12 sm:text-2xl md:text-3xl dark:bg-white" href="{{ url }}" target="_blank">
+        <i class="{{ iconClass }}"></i>
+    </a>
+{% endmacro %}
+
+{% macro hr() %}
+    <div class="mt-4 mx-auto px-2 w-full max-w-screen-xl md:mt-8 xl:mt-16 sm:px-4 md:px-8">
+        <div class="border-b border-gray-200 dark:border-gray-600"></div>
+    </div>
+{% endmacro %}
+
+{% macro activity(activity, dateFormat) %}
+    <div class="mt-4 flex md:mt-8 xl:mt-16">
+        <div class="w-0.5 flex-shrink-0 bg-gray-200 rounded-full sm:w-1"></div>
+
+        <div class="ml-2 flex-grow sm:ml-4">
+            <p>
+                {% if activity.stoppedAt is null %}
+                    {{ 'activity.mission.since'|trans({'%date%': activity.startedAt|format_date(pattern=dateFormat)}) }}
+                {% else %}
+                    {{ activity.startedAt|format_date(pattern=dateFormat) }} - {{ activity.stoppedAt|format_date(pattern=dateFormat) }}
+                {% endif %}
+            </p>
+            
+            <h3 class="text-2xl font-bold tracking-tight text-gray-800 md:mt-1 xl:mt-2 md:text-3xl lg:text-4xl xl:text-5xl dark:text-white">
+                {{ activity.place.name }}
+            </h3>
+
+            <h4 class="text-lg tracking-tight md:text-xl lg:text-2xl xl:text-3xl font-bold text-gray-800 md:mt-1 xl:mt-2 dark:text-white">
+                {{ activity.title }}
+            </h4>
+
+            {% for mission in activity.missions %}
+                <div class="mt-2 flex md:mt-4 xl:mt-8">
+                    <div class="w-0.5 flex-shrink-0 bg-gray-200 rounded-full sm:w-1"></div>
+
+                    <div class="ml-2 flex-grow sm:ml-4">
+                        {% if mission.customer is not null %}
+                            <p class="font-bold text-gray-800 dark:text-white">
+                                {% if mission.link is not null %}
+                                    <a class="flex items-center" href="{{ mission.link }}" target="_link">
+                                        {{ mission.customer }} <i class="fas fa-external-link-alt ml-1 text-base"></i>
+                                    </a>
+                                {% else %}
+                                    {{ mission.customer }}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+
+                        <p class="mt-1 leading-relaxed xl:mt-2">{{ mission.description }}</p>
+                        <p class="mt-1 text-sm italic xl:mt-2 md:text-base lg:text-lg xl:text-xl">{{ mission.environment }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            {% if activity.description is not null %}<p class="mt-2 leading-relaxed md:mt-4 xl:mt-8">{{ activity.description }}</p>{% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro header_overtitle(text) %}
+    <p class="text-lg font-medium tracking-tight text-gray-800 md:text-xl lg:text-2xl xl:text-3xl dark:text-white">{{ text }}</p>
+{% endmacro %}
+
+{% macro header_title(text) %}
+    <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-800 md:mt-4 xl:mt-8 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl dark:text-white">{{ text }}</h1>
+{% endmacro %}
+
+{% macro header_description(text) %}
+    <p class="mt-2 md:mt-4 xl:mt-8 leading-relaxed">{{ text }}</p>
+{% endmacro %}

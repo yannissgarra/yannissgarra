@@ -14,5 +14,6 @@ module.exports = {
   },
   rules: {
     'max-len': ['error', { ignoreComments: true }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };

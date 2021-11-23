@@ -1,27 +1,18 @@
 {% extends 'frontoffice/base.html.twig' %}
+{% import "frontoffice/elements.html.twig" as elements %}
 
 {% block body %}
-    {% for work in works %}
-        <div class="p-4">
-            <p>{{ work.title }}</p>
-            <p>{{ work.place.name }}</p>
-            {% if work.description is not null %}<p>{{ work.description }}</p>{% endif %}
-            <p>{{ work.startedAt|date }} -{% if work.stoppedAt is not null %} {{ work.stoppedAt|date }}{% endif %}</p>
+    <header class="mt-4 mx-auto px-2 max-w-screen-xl md:mt-8 xl:mt-16 sm:px-4 md:px-8">
+        <div class="flex flex-col sm:flex-row">
+            <div class="mb-4 w-full h-48 flex-shrink-0 overflow-hidden bg-center bg-cover rounded sm:order-2 sm:mb-0 sm:ml-4 md:ml-8 xl:ml-12 xs:h-64 sm:w-1/3 xl:w-1/4 sm:h-auto sm:rounded-lg xl:rounded-xl" style="background-image: url({{ asset('uploads/profile.jpg') }})"></div>
 
-            {% for mission in work.missions %}
-                {% if mission.customer is not null %}<p>{{ mission.customer }}</p>{% endif %}
-                <p>{{ mission.description }}</p>
-                <p>{{ mission.role }}</p>
-                <p>{{ mission.environment }}</p>
-                {% if mission.link is not null %}<p>{{ mission.link }}</p>{% endif %}
-            {% endfor %}
+            <div class="sm:order-1">
+                {{ elements.header_overtitle('Yannis Sgarra') }}
+                {{ elements.header_title('Développeur web') }}
+                {{ elements.header_description('Passionné du web, curieux des nouvelles technologies, j\'aime passer du temps à façonner les applications que je développe, avec pour objectif de toujours offrir la meilleure réponse possible aux problématiques de l\'utilisateur.') }}
+                
+                {{ elements.service_links() }}
+            </div>
         </div>
-    {% endfor %}
-
-    {% for training in trainings %}
-        <p>{{ training.place.name }}</p>
-        <p>{{ training.title }}</p>
-        <p>{{ training.description }}</p>
-        <p>{{ training.startedAt|date }} - {{ training.stoppedAt|date }}</p>
-    {% endfor %}
+    </header>
 {% endblock %}
