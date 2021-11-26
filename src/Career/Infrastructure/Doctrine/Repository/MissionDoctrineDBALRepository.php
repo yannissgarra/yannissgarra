@@ -21,8 +21,7 @@ final class MissionDoctrineDBALRepository extends AbstractDoctrineDBALRepository
         $qb = $this->createBaseQueryBuilder($languageId);
 
         $qb->andWhere($qb->expr()->in('mission.activity_id', ':activity_ids'))
-            ->setParameter('activity_ids', Activity::extractIds($activities->toArray()), Connection::PARAM_STR_ARRAY)
-        ;
+            ->setParameter('activity_ids', Activity::extractIds($activities->toArray()), Connection::PARAM_STR_ARRAY);
 
         $qb->orderBy('mission.position', Criteria::ASC);
 
@@ -39,8 +38,7 @@ final class MissionDoctrineDBALRepository extends AbstractDoctrineDBALRepository
                         ->setRole($data['mission_role'])
                         ->setEnvironment($data['mission_environment'])
                         ->setDescription($data['mission_description'])
-                        ->setLink($data['mission_link'])
-                    ;
+                        ->setLink($data['mission_link']);
 
                     $activity->addMission($mission);
 
@@ -55,16 +53,14 @@ final class MissionDoctrineDBALRepository extends AbstractDoctrineDBALRepository
         $qb = $this->createQueryBuilder();
 
         $qb->select('mission.id as mission_id', 'mission.customer as mission_customer', 'mission.activity_id as activity_id')
-            ->from('carr_mission', 'mission')
-        ;
+            ->from('carr_mission', 'mission');
 
         $qb->addSelect('missionTranslation.role as mission_role', 'missionTranslation.environment as mission_environment', 'missionTranslation.description as mission_description', 'missionTranslation.link as mission_link')
             ->join('mission', 'carr_mission_translation', 'missionTranslation', $qb->expr()->and(
                 $qb->expr()->eq('missionTranslation.mission_id', 'mission.id'),
                 $qb->expr()->eq('missionTranslation.language_id', ':language_id')
             ))
-            ->setParameter('language_id', $languageId)
-        ;
+            ->setParameter('language_id', $languageId);
 
         return $qb;
     }

@@ -10,5 +10,5 @@ use Webmunkeez\CQRSDoctrineBundle\Repository\ReadRepositoryInterface;
 
 interface ActivityRepositoryInterface extends ReadRepositoryInterface
 {
-    public function findByTypes(array $types, Uuid $languageId): Collection;
+    public function findByEmployee(Uuid $employeeId, Uuid $languageId): Collection;
 }

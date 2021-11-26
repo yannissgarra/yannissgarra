@@ -17,6 +17,7 @@ final class Activity extends AbstractModel
     private \DateTime $startedAt;
     private ?\DateTime $stoppedAt;
     private Place $place;
+    private string $type;
     private Collection $missions;
 
     public function __construct()
@@ -93,6 +94,18 @@ final class Activity extends AbstractModel
     public function setPlace(Place $place): self
     {
         $this->place = $place;
+
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

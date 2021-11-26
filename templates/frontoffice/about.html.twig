@@ -1,23 +1,23 @@
 {% extends 'frontoffice/base.html.twig' %}
 {% import "frontoffice/elements.html.twig" as elements %}
 
-{% block title %}Yannis Sgarra - {{ 'nav.about'|trans }}{% endblock %}
+{% block title %}{{ employee().firstName }} {{ employee().lastName }} - {{ 'nav.about'|trans }}{% endblock %}
 
 {% block body %}
     <div class="mx-auto px-2 max-w-screen-xl sm:px-4 md:px-8">
         <div class="mt-4 md:mt-8 xl:mt-16">
-            {{ elements.header_overtitle('Yannis Sgarra') }}
-            {{ elements.header_title('Développeur web') }}
-            {{ elements.header_description('Passionné du web, curieux des nouvelles technologies, j\'aime passer du temps à façonner les applications que je développe, avec pour objectif de toujours offrir la meilleure réponse possible aux problématiques de l\'utilisateur.') }}
+            {{ elements.header_overtitle(employee().firstName ~ ' ' ~ employee().lastName) }}
+            {{ elements.header_title(employee().role) }}
+            {{ elements.header_description(employee().description) }}
             
-            {{ elements.service_links() }}
+            {{ elements.service_links(employee()) }}
         </div>
     </div>
 
     {{ elements.hr() }}
 
     <div class="mx-auto px-2 max-w-screen-xl sm:px-4 md:px-8">
-        {% for work in works %}
+        {% for work in activities|filter(activity => activity.type in ['work', 'project']) %}
             {{ elements.activity(work, 'MMMM YYYY') }}
         {% endfor %}
     </div>
@@ -25,7 +25,7 @@
     {{ elements.hr() }}
 
     <div class="mx-auto px-2 max-w-screen-xl sm:px-4 md:px-8">
-        {% for training in trainings %}
+        {% for training in activities|filter(activity => activity.type in ['training']) %}
             {{ elements.activity(training, 'YYYY') }}
         {% endfor %}
     </div>

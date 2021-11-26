@@ -4,12 +4,12 @@
     </a>
 {% endmacro %}
 
-{% macro service_links() %}
+{% macro service_links(employee) %}
     <ul class="mt-4 flex text-white md:mt-8 xl:mt-12 dark:text-gray-800">
-        <li>{{ _self.service_link('fab fa-github', '') }}</li>
-        <li class="ml-1 md:ml-2">{{ _self.service_link('fab fa-linkedin-in', '') }}</li>
-        <li class="ml-1 md:ml-2">{{ _self.service_link('fab fa-twitter', '') }}</li>
-        <li class="ml-1 md:ml-2">{{ _self.service_link('fas fa-envelope', '') }}</li>
+        <li>{{ _self.service_link('fab fa-github', employee.githubUrl) }}</li>
+        <li class="ml-1 md:ml-2">{{ _self.service_link('fab fa-linkedin-in', employee.linkedinUrl) }}</li>
+        <li class="ml-1 md:ml-2">{{ _self.service_link('fab fa-twitter', employee.twitterUrl) }}</li>
+        <li class="ml-1 md:ml-2">{{ _self.service_link('fas fa-envelope', 'mailto:' ~ employee.email) }}</li>
 
         <li class="ml-1 md:ml-2">
             <a class="px-2 flex items-center h-full bg-gray-800 rounded text-xs font-bold md:px-4 sm:text-sm md:text-base lg:text-lg dark:bg-white" href="" target="_blank">

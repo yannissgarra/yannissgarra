@@ -31,6 +31,10 @@ class Activity extends AbstractEntity
     #[Assert\NotBlank]
     private string $type;
 
+    #[ORM\ManyToOne(targetEntity: Employee::class, inversedBy: 'activities')]
+    #[ORM\JoinColumn(name: 'employee_id', referencedColumnName: 'id', nullable: false)]
+    private Employee $employee;
+
     #[ORM\ManyToOne(targetEntity: Place::class, inversedBy: 'activities')]
     #[ORM\JoinColumn(name: 'place_id', referencedColumnName: 'id', nullable: false)]
     private Place $place;
@@ -126,6 +130,28 @@ class Activity extends AbstractEntity
     public function updateType(string $type): self
     {
         $this->setType($type);
+        $this->updateLastUpdatedAt();
+
+        return $this;
+    }
+
+    public function getEmployee(): Employee
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(Employee $employee): self
+    {
+        $this->employee = $employee;
+        $employee->addActivity($this);
+
+        return $this;
+    }
+
+    public function updateEmployee(Employee $employee): self
+    {
+        $this->employee->removeActivity($this);
+        $this->setEmployee($employee);
         $this->updateLastUpdatedAt();
 
         return $this;

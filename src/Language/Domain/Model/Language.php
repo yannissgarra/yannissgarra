@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Language\Domain\Model;
 
 use App\Career\Domain\Model\ActivityTranslation;
+use App\Career\Domain\Model\EmployeeTranslation;
 use App\Career\Domain\Model\MissionTranslation;
 use App\Career\Domain\Model\PlaceTranslation;
 use App\Common\Domain\Model\AbstractEntity;
@@ -28,6 +29,9 @@ class Language extends AbstractEntity
     #[Assert\NotBlank]
     private string $locale;
 
+    #[ORM\OneToMany(targetEntity: EmployeeTranslation::class, mappedBy: 'language')]
+    private Collection $employeeTranslations;
+
     #[ORM\OneToMany(targetEntity: PlaceTranslation::class, mappedBy: 'language')]
     private Collection $placeTranslations;
 
@@ -42,6 +46,7 @@ class Language extends AbstractEntity
         parent::__construct();
 
         // init values
+        $this->employeeTranslations = new ArrayCollection();
         $this->placeTranslations = new ArrayCollection();
         $this->activityTranslations = new ArrayCollection();
         $this->missionTranslations = new ArrayCollection();
@@ -82,6 +87,27 @@ class Language extends AbstractEntity
     public function updateLocale(string $locale): self
     {
         $this->setLocale($locale);
+        $this->updateLastUpdatedAt();
+
+        return $this;
+    }
+
+    public function getEmployeeTranslations(): Collection
+    {
+        return $this->employeeTranslations;
+    }
+
+    public function addEmployeeTranslation(EmployeeTranslation $employeeTranslation): self
+    {
+        $this->employeeTranslations[] = $employeeTranslation;
+        $this->updateLastUpdatedAt();
+
+        return $this;
+    }
+
+    public function removeEmployeeTranslation(EmployeeTranslation $employeeTranslation): self
+    {
+        $this->employeeTranslations->removeElement($employeeTranslation);
         $this->updateLastUpdatedAt();
 
         return $this;

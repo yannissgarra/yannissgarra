@@ -19,13 +19,10 @@ final class AboutQueryHandler implements QueryHandlerInterface
 
     public function __invoke(AboutQuery $query): array
     {
-        $trainings = $this->activityRepository->findByTypes(['training'], Uuid::fromString('f0d0c1c9-a1f0-4057-a7f6-78e2673e4829'));
-
-        $works = $this->activityRepository->findByTypes(['work', 'project'], Uuid::fromString('f0d0c1c9-a1f0-4057-a7f6-78e2673e4829'));
+        $activities = $this->activityRepository->findByEmployee(Uuid::fromString('ffe7d61f-f184-44a7-bce7-256e6cd8e7a3'), Uuid::fromString('f0d0c1c9-a1f0-4057-a7f6-78e2673e4829'));
 
         return [
-            'trainings' => $trainings,
-            'works' => $works,
+            'activities' => $activities,
         ];
     }
 }

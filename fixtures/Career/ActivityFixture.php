@@ -19,6 +19,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'started_at' => '2005-09-01',
             'stopped_at' => '2008-06-30',
             'type' => 'training',
+            'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-berlioz',
             'translations' => [
                 'language-english' => [
@@ -37,6 +38,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'started_at' => '2008-09-01',
             'stopped_at' => '2010-06-30',
             'type' => 'training',
+            'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-uga',
             'translations' => [
                 'language-english' => [
@@ -55,6 +57,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'started_at' => '2010-09-01',
             'stopped_at' => '2011-06-30',
             'type' => 'training',
+            'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-uga',
             'translations' => [
                 'language-english' => [
@@ -73,6 +76,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'started_at' => '2010-08-01',
             'stopped_at' => '2014-10-31',
             'type' => 'work',
+            'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-mezcalito',
             'translations' => [
                 'language-english' => [
@@ -89,6 +93,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'started_at' => '2009-02-01',
             'stopped_at' => '2015-12-31',
             'type' => 'project',
+            'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-cuisinetudiant',
             'translations' => [
                 'language-english' => [
@@ -105,8 +110,9 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'id' => '5bae3ad5-ad82-4f61-a84f-9991081cdf56',
             'reference' => 'Dev Mezcalito v2',
             'started_at' => '2016-02-01',
-            'stopped_at' => '2019-11-30',
+            'stopped_at' => '2019-12-30',
             'type' => 'work',
+            'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-mezcalito',
             'translations' => [
                 'language-english' => [
@@ -120,8 +126,9 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
         'activity-freelance' => [
             'id' => '843a0158-8e86-4319-b1e1-e40b7ca95ddb',
             'reference' => 'Freelance',
-            'started_at' => '2019-11-30',
+            'started_at' => '2020-12-01',
             'type' => 'work',
+            'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-freelance',
             'translations' => [
                 'language-english' => [
@@ -142,6 +149,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
                 ->setReference($data['reference'])
                 ->setStartedAt(new \DateTime($data['started_at']))
                 ->setType($data['type'])
+                ->setEmployee($this->getReference($data['employee_reference']))
                 ->setPlace($this->getReference($data['place_reference']))
             ;
 
@@ -172,6 +180,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
     {
         return [
             LanguageFixture::class,
+            EmployeeFixture::class,
             PlaceFixture::class,
         ];
     }

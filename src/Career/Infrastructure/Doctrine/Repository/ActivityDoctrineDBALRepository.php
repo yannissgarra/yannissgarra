@@ -11,7 +11,6 @@ use App\Career\Query\Repository\MissionRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Component\Uid\Uuid;
 use Webmunkeez\CQRSDoctrineBundle\Doctrine\Repository\AbstractDoctrineDBALRepository;
@@ -25,13 +24,12 @@ final class ActivityDoctrineDBALRepository extends AbstractDoctrineDBALRepositor
         $this->missionRepository = $missionRepository;
     }
 
-    public function findByTypes(array $types, Uuid $languageId): Collection
+    public function findByEmployee(Uuid $employeeId, Uuid $languageId): Collection
     {
         $qb = $this->createBaseQueryBuilder($languageId);
 
-        $qb->andWhere($qb->expr()->in('activity.type', ':types'))
-            ->setParameter('types', $types, Connection::PARAM_STR_ARRAY)
-        ;
+        $qb->andWhere($qb->expr()->in('activity.employee_id', ':employee_id'))
+            ->setParameter('employee_id', $employeeId);
 
         $qb->orderBy('activity.stopped_at', Criteria::DESC);
 
@@ -53,7 +51,7 @@ final class ActivityDoctrineDBALRepository extends AbstractDoctrineDBALRepositor
                     ->setDescription($data['place_description'])
                     ->setLink($data['place_link'])
                 )
-            ;
+                ->setType($data['activity_type']);
 
             $activities->add($activity);
         }
@@ -67,29 +65,25 @@ final class ActivityDoctrineDBALRepository extends AbstractDoctrineDBALRepositor
     {
         $qb = $this->createQueryBuilder();
 
-        $qb->select('activity.id as activity_id', 'activity.started_at as activity_started_at', 'activity.stopped_at as activity_stopped_at')
-            ->from('carr_activity', 'activity')
-        ;
+        $qb->select('activity.id as activity_id', 'activity.started_at as activity_started_at', 'activity.stopped_at as activity_stopped_at', 'activity.type as activity_type')
+            ->from('carr_activity', 'activity');
 
         $qb->addSelect('activityTranslation.title as activity_title', 'activityTranslation.description as activity_description')
             ->join('activity', 'carr_activity_translation', 'activityTranslation', $qb->expr()->and(
                 $qb->expr()->eq('activityTranslation.activity_id', 'activity.id'),
                 $qb->expr()->eq('activityTranslation.language_id', ':language_id')
             ))
-            ->setParameter('language_id', $languageId)
-        ;
+            ->setParameter('language_id', $languageId);
 
         $qb->addSelect('place.id as place_id', 'place.name as place_name')
-            ->join('activity', 'carr_place', 'place', $qb->expr()->eq('place.id', 'activity.place_id'))
-        ;
+            ->join('activity', 'carr_place', 'place', $qb->expr()->eq('place.id', 'activity.place_id'));
 
         $qb->addSelect('placeTranslation.description as place_description', 'placeTranslation.link as place_link')
             ->join('place', 'carr_place_translation', 'placeTranslation', $qb->expr()->and(
                 $qb->expr()->eq('placeTranslation.place_id', 'place.id'),
                 $qb->expr()->eq('placeTranslation.language_id', ':language_id')
             ))
-            ->setParameter('language_id', $languageId)
-        ;
+            ->setParameter('language_id', $languageId);
 
         return $qb;
     }
