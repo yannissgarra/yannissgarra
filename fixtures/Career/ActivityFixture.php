@@ -110,7 +110,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'id' => '5bae3ad5-ad82-4f61-a84f-9991081cdf56',
             'reference' => 'Dev Mezcalito v2',
             'started_at' => '2016-02-01',
-            'stopped_at' => '2019-12-30',
+            'stopped_at' => '2019-11-30',
             'type' => 'work',
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-mezcalito',
@@ -126,7 +126,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
         'activity-freelance' => [
             'id' => '843a0158-8e86-4319-b1e1-e40b7ca95ddb',
             'reference' => 'Freelance',
-            'started_at' => '2020-12-01',
+            'started_at' => '2019-12-01',
             'type' => 'work',
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-freelance',
