@@ -12,7 +12,7 @@ use Webmunkeez\ADRBundle\Annotation\Template;
 use Webmunkeez\CQRSBundle\Query\QueryBusAwareInterface;
 use Webmunkeez\CQRSBundle\Query\QueryBusAwareTrait;
 
-#[Route('/about', name: 'about', methods: ['GET'])]
+#[Route(['en' => '/about', 'fr' => '/a-propos'], name: 'about', methods: ['GET'])]
 #[Template('frontoffice/about.html.twig')]
 final class AboutAction extends AbstractAction implements QueryBusAwareInterface
 {
