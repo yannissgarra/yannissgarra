@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Career\Infrastructure\Doctrine\Repository;
 
 use App\Career\Query\Model\Activity;
-use App\Career\Query\Model\Mission;
+use App\Career\Query\Model\ActivityFull;
+use App\Career\Query\Model\MissionMedium;
 use App\Career\Query\Repository\MissionRepositoryInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
@@ -29,10 +30,10 @@ final class MissionDoctrineDBALRepository extends AbstractDoctrineDBALRepository
 
         /** @var array $data */
         foreach ($datas as $data) {
-            /** @var Activity $activity */
+            /** @var ActivityFull $activity */
             foreach ($activities as $activity) {
                 if ($activity->getId()->equals(Uuid::fromString($data['activity_id']))) {
-                    $mission = (new Mission())
+                    $mission = (new MissionMedium())
                         ->setId(Uuid::fromString($data['mission_id']))
                         ->setCustomer($data['mission_customer'])
                         ->setRole($data['mission_role'])

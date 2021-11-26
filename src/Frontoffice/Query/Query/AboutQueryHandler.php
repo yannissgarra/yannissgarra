@@ -18,10 +18,8 @@ final class AboutQueryHandler implements QueryHandlerInterface
 
     public function __invoke(AboutQuery $query): array
     {
-        $activities = $this->activityRepository->findByEmployee($query->getEmployeeId(), $query->getLanguageId());
-
         return [
-            'activities' => $activities,
+            'activities' => $this->activityRepository->findByEmployee($query->getEmployeeId(), $query->getLanguageId()),
         ];
     }
 }

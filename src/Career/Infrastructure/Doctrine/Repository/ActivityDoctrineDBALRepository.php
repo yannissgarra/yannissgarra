@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Career\Infrastructure\Doctrine\Repository;
 
-use App\Career\Query\Model\Activity;
-use App\Career\Query\Model\Place;
+use App\Career\Query\Model\ActivityFull;
+use App\Career\Query\Model\PlaceMedium;
 use App\Career\Query\Repository\ActivityRepositoryInterface;
 use App\Career\Query\Repository\MissionRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -39,13 +39,13 @@ final class ActivityDoctrineDBALRepository extends AbstractDoctrineDBALRepositor
 
         /** @var array $data */
         foreach ($datas as $data) {
-            $activity = (new Activity())
+            $activity = (new ActivityFull())
                 ->setId(Uuid::fromString($data['activity_id']))
                 ->setTitle($data['activity_title'])
                 ->setDescription($data['activity_description'])
                 ->setStartedAt(new \DateTime($data['activity_started_at']))
                 ->setStoppedAt(null !== $data['activity_stopped_at'] ? new \DateTime($data['activity_stopped_at']) : null)
-                ->setPlace((new Place())
+                ->setPlace((new PlaceMedium())
                     ->setId(Uuid::fromString($data['place_id']))
                     ->setName($data['place_name'])
                     ->setDescription($data['place_description'])
