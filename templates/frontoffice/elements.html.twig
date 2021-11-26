@@ -12,7 +12,7 @@
         <li class="ml-1 md:ml-2">{{ _self.service_link('fas fa-envelope', 'mailto:' ~ employee.email) }}</li>
 
         <li class="ml-1 md:ml-2">
-            <a class="px-2 flex items-center h-full bg-gray-800 rounded text-xs font-bold md:px-4 sm:text-sm md:text-base lg:text-lg dark:bg-white" href="" target="_blank">
+            <a class="px-2 flex items-center h-full bg-gray-800 rounded text-xs font-bold md:px-4 sm:text-sm md:text-base lg:text-lg dark:bg-white" href="{{ url('download_resume') }}">
                 {{ 'home.action.download_resume' |trans }}
             </a>
         </li>
