@@ -15,6 +15,7 @@
     "mblode.twig-language-2",
     "rangav.vscode-thunder-client",
     "dbaeumer.vscode-eslint",
+    "octref.vetur",
     "bradlc.vscode-tailwindcss"
   ]
 }

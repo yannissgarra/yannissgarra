@@ -16,6 +16,7 @@ Encore
   .enableBuildNotifications()
   .enableSourceMaps(!Encore.isProduction())
   .enableVersioning(Encore.isProduction()) // enables hashed filenames (e.g. app.abc123.css)
-  .enablePostCssLoader(); // enables PostCSS
+  .enablePostCssLoader() // enables PostCSS
+  .enableVueLoader(() => {}, { runtimeCompilerBuild: false }); // enables VueJS
 
 module.exports = Encore.getWebpackConfig();

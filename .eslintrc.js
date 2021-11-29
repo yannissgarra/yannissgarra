@@ -5,15 +5,30 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'plugin:vue/vue3-recommended',
   ],
-  parser: '@babel/eslint-parser',
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@babel/eslint-parser',
     requireConfigFile: false,
     ecmaVersion: 13,
     sourceType: 'module',
   },
   rules: {
-    'max-len': ['error', { ignoreComments: true }],
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-extraneous-dependencies': ['error', {
+      devDependencies: true,
+    }],
+    'max-len': 'off',
+    'vue/max-len': ['error', {
+      template: 9000,
+      ignoreComments: true,
+      ignoreTemplateLiterals: true,
+      ignoreUrls: true,
+      ignoreStrings: true,
+    }],
+    'vue/max-attributes-per-line': 'off',
+    'vue/singleline-html-element-content-newline': ['error', {
+      ignoreWhenNoAttributes: false,
+    }],
   },
 };
