@@ -15,11 +15,15 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'no-param-reassign': ['error', {
+      props: false,
+    }],
     'import/no-extraneous-dependencies': ['error', {
       devDependencies: true,
     }],
     'max-len': 'off',
     'vue/max-len': ['error', {
+      code: 120,
       template: 9000,
       ignoreComments: true,
       ignoreTemplateLiterals: true,

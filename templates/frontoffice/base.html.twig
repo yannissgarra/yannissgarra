@@ -1,7 +1,7 @@
 {% import "frontoffice/elements.html.twig" as elements %}
 
 <!DOCTYPE html>
-<html class="light">
+<html id="app" class="light">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,13 +19,6 @@
             <div class="relative h-12 flex items-center border-b border-gray-200 md:h-16 dark:border-gray-600">
                 <a class="h-full flex items-center font-bold tracking-tight xl:text-xl" href="{{ url('home') }}"><span class="text-gray-800 dark:text-white">{{ employee().firstName|lower }}</span><span class="text-gray-400">{{ employee().lastName|lower }}</span></a>
 
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs md:text-base">
-                    <ul class="p-0.5 flex border border-gray-400 rounded-full md:p-1">
-                        <li><a class="w-4 h-4 flex items-center justify-center bg-gray-400 rounded-full text-white md:w-6 md:h-6" href=""><i class="fas fa-sun"></i></a></li>
-                        <li class="ml-1"><a class="w-4 h-4 flex items-center justify-center text-gray-400 md:w-6 md:h-6" href=""><i class="fas fa-moon"></i></a></li>
-                    </ul>
-                </div>
-
                 <nav class="ml-auto h-full text-xs font-medium sm:text-sm md:text-base">
                     <ul class="h-full flex">
                         <li>{{ elements.nav_link('nav.about', 'about') }}</li>
@@ -38,7 +31,11 @@
             {% block body %}{% endblock %}
         </main>
 
-        <footer class="h-12 md:h-16"></footer>
+        <footer class="mt-4 mx-auto px-2 w-full max-w-screen-xl md:mt-8 xl:mt-16 sm:px-4 md:px-8">
+            <div class="py-2 flex items-center border-t border-gray-200 sm:py-4 dark:border-gray-600">
+                <div id="dark-mode-toggler" class="m-auto"></div>
+            </div>
+        </footer>
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}

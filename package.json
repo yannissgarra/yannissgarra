@@ -24,6 +24,7 @@
         "tailwindcss": "^2.2.19",
         "vue": "^3.2.23",
         "vue-loader": "^16.1.0",
+        "vuex": "^4.0.2",
         "webpack-notifier": "^1.6.0"
     }
 }

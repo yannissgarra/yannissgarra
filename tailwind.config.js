@@ -4,7 +4,7 @@ module.exports = {
   mode: 'jit',
   purge: [
     './templates/**/*.html.twig',
-    './assets/**/*.js',
+    './assets/**/*.{js,vue}',
   ],
   darkMode: 'class',
   theme: {
