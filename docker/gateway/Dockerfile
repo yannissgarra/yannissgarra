@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 
 # install general dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends git libzip-dev unzip libicu-dev libpq-dev \
