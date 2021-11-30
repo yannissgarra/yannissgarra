@@ -8,7 +8,7 @@ const darkModeClassUpdaterPlugin = (store) => {
   });
 };
 
-export default createStore({
+const store = createStore({
   state() {
     return {
       selectedMode: 'auto',
@@ -44,3 +44,5 @@ export default createStore({
     darkModeClassUpdaterPlugin,
   ],
 });
+
+export default store;
