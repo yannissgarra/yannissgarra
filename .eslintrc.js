@@ -35,4 +35,14 @@ module.exports = {
       ignoreWhenNoAttributes: false,
     }],
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@', './assets/'],
+        ],
+        extensions: ['.js', '.vue'],
+      },
+    },
+  },
 };

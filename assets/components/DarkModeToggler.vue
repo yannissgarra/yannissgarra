@@ -18,7 +18,7 @@
 <script>
 import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
-import DarkModeTogglerOption from './DarkModeTogglerOption.vue';
+import DarkModeTogglerOption from '@/components/DarkModeTogglerOption.vue';
 
 export default defineComponent({
   components: {

@@ -5,8 +5,8 @@ import '@fortawesome/fontawesome-free/js/brands';
 import '@fortawesome/fontawesome-free/js/fontawesome';
 
 import { createApp } from 'vue';
-import darkModeStore from './stores/darkModeStore';
-import DarkModeToggler from './components/DarkModeToggler.vue';
+import darkModeStore from '@/stores/darkModeStore';
+import DarkModeToggler from '@/components/DarkModeToggler.vue';
 
 createApp(DarkModeToggler)
   .use(darkModeStore)

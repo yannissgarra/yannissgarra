@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -17,6 +18,9 @@ Encore
   .enableSourceMaps(!Encore.isProduction())
   .enableVersioning(Encore.isProduction()) // enables hashed filenames (e.g. app.abc123.css)
   .enablePostCssLoader() // enables PostCSS
-  .enableVueLoader(() => {}, { runtimeCompilerBuild: false }); // enables VueJS
+  .enableVueLoader(() => {}, { runtimeCompilerBuild: false }) // enables VueJS
+  .addAliases({
+    '@': path.resolve(__dirname, 'assets'),
+  });
 
 module.exports = Encore.getWebpackConfig();
