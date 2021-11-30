@@ -8,8 +8,6 @@ import { createApp } from 'vue';
 import darkModeStore from './stores/darkModeStore';
 import DarkModeToggler from './components/DarkModeToggler.vue';
 
-document.getElementById('app').className = darkModeStore.getters.activatedMode;
-
 createApp(DarkModeToggler)
   .use(darkModeStore)
   .mount('#dark-mode-toggler');

@@ -17,11 +17,17 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { useStore } from 'vuex';
 import DarkModeTogglerOption from './DarkModeTogglerOption.vue';
 
 export default defineComponent({
   components: {
     DarkModeTogglerOption,
+  },
+  setup() {
+    const store = useStore();
+
+    store.dispatch('selectMode', { mode: store.getters.selectedMode });
   },
 });
 </script>

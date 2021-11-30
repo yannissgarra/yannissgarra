@@ -1,4 +1,6 @@
 import { createStore } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+import Cookies from 'js-cookie';
 
 const darkModeClassUpdaterPlugin = (store) => {
   store.subscribe((mutation) => {
@@ -12,11 +14,21 @@ const store = createStore({
   state() {
     return {
       selectedMode: 'auto',
+      activatedMode: 'light',
     };
   },
   mutations: {
     selectMode(state, { mode }) {
       state.selectedMode = mode;
+      state.activatedMode = mode;
+
+      if (mode === 'auto') {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches === true) {
+          state.activatedMode = 'dark';
+        } else {
+          state.activatedMode = 'light';
+        }
+      }
     },
   },
   actions: {
@@ -29,20 +41,21 @@ const store = createStore({
       return state.selectedMode;
     },
     activatedMode(state) {
-      if (state.selectedMode === 'auto') {
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches === true) {
-          return 'dark';
-        }
-
-        return 'light';
-      }
-
-      return state.selectedMode;
+      return state.activatedMode;
     },
   },
   plugins: [
     darkModeClassUpdaterPlugin,
+    createPersistedState({
+      key: 'darkMode',
+      storage: {
+        getItem: (key) => Cookies.get(key),
+        setItem: (key, value) => Cookies.set(key, value, { secure: true }),
+        removeItem: (key) => Cookies.remove(key),
+      },
+    }),
   ],
+  strict: true,
 });
 
 export default store;
