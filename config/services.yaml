@@ -19,4 +19,9 @@ services:
         resource: '../src/'
         exclude:
             - '../src/Kernel.php'
-            - '../src/Entity/'
+            - '../src/**/*Exception.php'
+            - '../src/*/Domain/Command/*Command.php'
+            - '../src/*/Domain/Event/*Event.php'
+            - '../src/*/Domain/Model'
+            - '../src/*/Query/Query/*Query.php'
+            - '../src/*/Query/Model'
