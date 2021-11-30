@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "376349822e1b800da8523594c49933fc",
+    "content-hash": "d5875614a4330d9d2c54069910c532d0",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1596,20 +1596,20 @@
         },
         {
             "name": "laminas/laminas-code",
-            "version": "4.5.x-dev",
+            "version": "4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-code.git",
-                "reference": "fbdaecda0c91ea0c7aa81c89eda16b2f345d0657"
+                "reference": "bb324850d09dd437b6acb142c13e64fdc725b0e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-code/zipball/fbdaecda0c91ea0c7aa81c89eda16b2f345d0657",
-                "reference": "fbdaecda0c91ea0c7aa81c89eda16b2f345d0657",
+                "url": "https://api.github.com/repos/laminas/laminas-code/zipball/bb324850d09dd437b6acb142c13e64fdc725b0e1",
+                "reference": "bb324850d09dd437b6acb142c13e64fdc725b0e1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4, <8.2"
+                "php": "^7.4 || ~8.0.0"
             },
             "conflict": {
                 "phpspec/prophecy": "<1.9.0"
@@ -1617,18 +1617,17 @@
             "require-dev": {
                 "doctrine/annotations": "^1.10.4",
                 "ext-phar": "*",
-                "laminas/laminas-coding-standard": "^2.3.0",
-                "laminas/laminas-stdlib": "^3.6.0",
-                "phpunit/phpunit": "^9.5.9",
-                "psalm/plugin-phpunit": "^0.16.1",
-                "vimeo/psalm": "^4.10.0"
+                "laminas/laminas-coding-standard": "^2.1.4",
+                "laminas/laminas-stdlib": "^3.3.0",
+                "phpunit/phpunit": "^9.4.2",
+                "psalm/plugin-phpunit": "^0.14.0",
+                "vimeo/psalm": "^4.3.1"
             },
             "suggest": {
                 "doctrine/annotations": "Doctrine\\Common\\Annotations >=1.0 for annotation features",
                 "laminas/laminas-stdlib": "Laminas\\Stdlib component",
                 "laminas/laminas-zendframework-bridge": "A bridge with Zend Framework"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1660,7 +1659,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-11-29T16:36:30+00:00"
+            "time": "2021-09-21T13:40:23+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -10911,13 +10910,11 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "laminas/laminas-code": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1.0",
+        "php": ">=8.0.0",
         "ext-ctype": "*",
         "ext-iconv": "*"
     },

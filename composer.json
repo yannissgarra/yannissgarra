@@ -4,7 +4,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1.0",
+        "php": ">=8.0.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.13",
@@ -45,8 +45,7 @@
         "twig/twig": "^3.3",
         "webmunkeez/adr-bundle": "^1.0",
         "webmunkeez/cqrs-bundle": "^1.0",
-        "webmunkeez/cqrs-doctrine-bundle": "^1.0",
-        "laminas/laminas-code": "~4.5.0@dev"
+        "webmunkeez/cqrs-doctrine-bundle": "^1.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
