@@ -1,0 +1,22 @@
+stages:
+    - build-images
+
+build-gateway-images:
+    stage: build-images
+    only:
+        refs:
+            - master
+        changes:
+            - docker/gateway/**/*
+    image: docker:latest
+    services:
+        - docker:dind
+    variables:
+        DOCKER_CONTEXT: ./docker/gateway
+        REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE}/gateway
+    script:
+        - docker info
+        - docker login ${CI_REGISTRY} --username ${CI_REGISTRY_USER} --password ${CI_REGISTRY_PASSWORD}
+        - docker build --target build --tag ${REGISTRY_IMAGE}/build:latest ${DOCKER_CONTEXT}
+        - docker push ${REGISTRY_IMAGE}/build:latest
+        - docker logout ${CI_REGISTRY}
