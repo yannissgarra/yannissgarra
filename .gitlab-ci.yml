@@ -28,8 +28,7 @@ build-gateway-images:
 test-gateway:
     stage: test
     only:
-        refs:
-            - master
+        - tags
     image: ${GATEWAY_REGISTRY_IMAGE}/build:latest
     script:
         - APP_ENV=test composer install --no-interaction
@@ -41,8 +40,7 @@ test-gateway:
 deploy-gateway:
     stage: deploy
     only:
-        refs:
-            - master
+        - tags
     image: ${GATEWAY_REGISTRY_IMAGE}/build:latest
     before_script:
         - mkdir -p ~/.ssh
@@ -56,4 +54,4 @@ deploy-gateway:
         - yarn build
         - tar -zcvf ${CI_COMMIT_SHA}.tar.gz ./bin/console ./config ./migrations ./public ./src ./templates ./translations ./vendor ./.env
         - scp -p ${CI_COMMIT_SHA}.tar.gz ${SSH_USER}@${SSH_HOST}:${SSH_PATH}/releases
-        - ssh ${SSH_USER}@${SSH_HOST} "cd ${SSH_PATH}/releases && mkdir ${CI_COMMIT_SHA} && mv ${CI_COMMIT_SHA}.tar.gz ${CI_COMMIT_SHA} && cd ${CI_COMMIT_SHA} && tar -xf ${CI_COMMIT_SHA}.tar.gz && rm ${CI_COMMIT_SHA}.tar.gz && cd ${SSH_PATH} && rm current && ln -s releases/${CI_COMMIT_SHA} current && cp shared/.env.local.php releases/${CI_COMMIT_SHA}/.env.local.php"
+        - ssh ${SSH_USER}@${SSH_HOST} "cd ${SSH_PATH}/releases && mkdir ${CI_COMMIT_TAG} && mv ${CI_COMMIT_SHA}.tar.gz ${CI_COMMIT_TAG} && cd ${CI_COMMIT_TAG} && tar -xf ${CI_COMMIT_SHA}.tar.gz && rm ${CI_COMMIT_SHA}.tar.gz && cd ${SSH_PATH} && rm current && ln -s releases/${CI_COMMIT_TAG} current && cp shared/.env.local.php releases/${CI_COMMIT_TAG}/.env.local.php"
