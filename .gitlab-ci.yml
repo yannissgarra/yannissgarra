@@ -21,15 +21,17 @@ build-gateway-images:
     script:
         - docker info
         - docker login ${CI_REGISTRY} --username ${CI_REGISTRY_USER} --password ${CI_REGISTRY_PASSWORD}
-        - docker build --target build --tag ${GATEWAY_REGISTRY_IMAGE}/build:latest ${DOCKER_CONTEXT}
-        - docker push ${GATEWAY_REGISTRY_IMAGE}/build:latest
+        - docker build --target test --tag ${GATEWAY_REGISTRY_IMAGE}/test:latest ${DOCKER_CONTEXT}
+        - docker push ${GATEWAY_REGISTRY_IMAGE}/test:latest
+        - docker build --target deploy --tag ${GATEWAY_REGISTRY_IMAGE}/deploy:latest ${DOCKER_CONTEXT}
+        - docker push ${GATEWAY_REGISTRY_IMAGE}/deploy:latest
         - docker logout ${CI_REGISTRY}
 
 test-gateway:
     stage: test
     only:
         - tags
-    image: ${GATEWAY_REGISTRY_IMAGE}/build:latest
+    image: ${GATEWAY_REGISTRY_IMAGE}/test:latest
     script:
         - APP_ENV=test composer install --no-interaction
         - yarn install
@@ -41,7 +43,7 @@ deploy-gateway:
     stage: deploy
     only:
         - tags
-    image: ${GATEWAY_REGISTRY_IMAGE}/build:latest
+    image: ${GATEWAY_REGISTRY_IMAGE}/deploy:latest
     before_script:
         - mkdir -p ~/.ssh
         - eval $(ssh-agent -s)

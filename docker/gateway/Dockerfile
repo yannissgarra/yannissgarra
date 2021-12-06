@@ -19,13 +19,7 @@ COPY ./php/conf.d/php.ini /usr/local/etc/php/conf.d/docker-php.ini
 
 WORKDIR /www
 
-FROM base AS build
-
-# install git
-RUN apt-get update && apt-get install -y --no-install-recommends git && apt-get clean
-
-# install ssh
-RUN apt-get update && apt-get install -y --no-install-recommends openssh-client && apt-get clean
+FROM base AS builder
 
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
@@ -46,7 +40,9 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get update && apt-get install -y --no-install-recommends nodejs && apt-get clean \
     && npm install -g yarn
 
-FROM build AS dev
+FROM builder AS test
+
+FROM builder AS dev
 
 # install xdebug
 RUN pecl install xdebug \
@@ -54,5 +50,10 @@ RUN pecl install xdebug \
 
 # copy xdebug ini configuration
 COPY ./php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/docker-xdebug.ini
+
+FROM builder AS deploy
+
+# install ssh
+RUN apt-get update && apt-get install -y --no-install-recommends openssh-client && apt-get clean
 
 FROM base AS prod
