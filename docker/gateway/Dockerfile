@@ -24,6 +24,9 @@ FROM base AS build
 # install git
 RUN apt-get update && apt-get install -y --no-install-recommends git && apt-get clean
 
+# install ssh
+RUN apt-get update && apt-get install -y --no-install-recommends openssh-client && apt-get clean
+
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && chmod a+x /usr/local/bin/composer

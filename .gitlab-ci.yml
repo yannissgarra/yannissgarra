@@ -1,5 +1,10 @@
 stages:
     - build-images
+    - test
+    - deploy
+
+variables:
+    GATEWAY_REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE}/gateway
 
 build-gateway-images:
     stage: build-images
@@ -13,10 +18,42 @@ build-gateway-images:
         - docker:dind
     variables:
         DOCKER_CONTEXT: ./docker/gateway
-        REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE}/gateway
     script:
         - docker info
         - docker login ${CI_REGISTRY} --username ${CI_REGISTRY_USER} --password ${CI_REGISTRY_PASSWORD}
-        - docker build --target build --tag ${REGISTRY_IMAGE}/build:latest ${DOCKER_CONTEXT}
-        - docker push ${REGISTRY_IMAGE}/build:latest
+        - docker build --target build --tag ${GATEWAY_REGISTRY_IMAGE}/build:latest ${DOCKER_CONTEXT}
+        - docker push ${GATEWAY_REGISTRY_IMAGE}/build:latest
         - docker logout ${CI_REGISTRY}
+
+test-gateway:
+    stage: test
+    only:
+        refs:
+            - master
+    image: ${GATEWAY_REGISTRY_IMAGE}/build:latest
+    script:
+        - APP_ENV=test composer install --no-interaction
+        - yarn install
+        - yarn dev
+        - php-cs-fixer fix ./src --dry-run --diff
+        - ./vendor/bin/phpunit
+
+deploy-gateway:
+    stage: deploy
+    only:
+        refs:
+            - master
+    image: ${GATEWAY_REGISTRY_IMAGE}/build:latest
+    before_script:
+        - mkdir -p ~/.ssh
+        - eval $(ssh-agent -s)
+        - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    script:
+        - APP_ENV=prod APP_DEBUG=0 composer install --no-dev --no-interaction --optimize-autoloader
+        - APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+        - yarn install
+        - yarn build
+        - tar -zcvf ${CI_COMMIT_SHA}.tar.gz ./bin/console ./config ./migrations ./public ./src ./templates ./translations ./vendor ./.env
+        - scp -p ${CI_COMMIT_SHA}.tar.gz ${SSH_USER}@${SSH_HOST}:${SSH_PATH}/releases
+        - ssh ${SSH_USER}@${SSH_HOST} "cd ${SSH_PATH}/releases && mkdir ${CI_COMMIT_SHA} && mv ${CI_COMMIT_SHA}.tar.gz ${CI_COMMIT_SHA} && cd ${CI_COMMIT_SHA} && tar -xf ${CI_COMMIT_SHA}.tar.gz && rm ${CI_COMMIT_SHA}.tar.gz && cd ${SSH_PATH} && rm current && ln -s releases/${CI_COMMIT_SHA} current && cp shared/.env.local.php releases/${CI_COMMIT_SHA}/.env.local.php"
