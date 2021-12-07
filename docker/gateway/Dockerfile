@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # copy php ini configuration
 COPY ./php/conf.d/php.ini /usr/local/etc/php/conf.d/docker-php.ini
 
+# set code to working directory
+RUN mkdir -p /www
+COPY . /www
 WORKDIR /www
 
 FROM base AS builder
