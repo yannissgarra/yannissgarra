@@ -58,7 +58,7 @@ build-gateway:
         - APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
         - yarn install
         - yarn build
-        - tar -zcvf ${CI_COMMIT_SHA}.tar.gz ./bin/console ./config ./migrations ./public ./src ./templates ./translations ./vendor ./.env
+        - tar -cvzf ${CI_COMMIT_SHA}.tar.gz ./bin/console ./config ./migrations ./public ./src ./templates ./translations ./vendor
     artifacts:
         paths:
             - ${CI_COMMIT_SHA}.tar.gz
@@ -76,4 +76,12 @@ deploy-gateway:
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     script:
         - scp -p ${CI_COMMIT_SHA}.tar.gz ${SSH_USER}@${SSH_HOST}:${SSH_PATH}/releases
-        - ssh ${SSH_USER}@${SSH_HOST} "cd ${SSH_PATH}/releases && mkdir ${CI_COMMIT_TAG} && mv ${CI_COMMIT_SHA}.tar.gz ${CI_COMMIT_TAG} && cd ${CI_COMMIT_TAG} && tar -xf ${CI_COMMIT_SHA}.tar.gz && rm ${CI_COMMIT_SHA}.tar.gz && cd ${SSH_PATH} && rm current && ln -s releases/${CI_COMMIT_TAG} current && cp shared/.env.local.php releases/${CI_COMMIT_TAG}/.env.local.php"
+        - |
+            ssh ${SSH_USER}@${SSH_HOST} /bin/bash -s << EOT
+            cd ${SSH_PATH}
+            mkdir -p releases/${CI_COMMIT_TAG}
+            tar -xvzf ${CI_COMMIT_SHA}.tar.gz -C releases/${CI_COMMIT_TAG}/
+            cp shared/.env.local.php releases/${CI_COMMIT_TAG}/.env.local.php
+            rm ${CI_COMMIT_SHA}.tar.gz
+            ln -sfn releases/${CI_COMMIT_TAG} current
+            EOT
