@@ -31,7 +31,6 @@ test-gateway:
         - tags
     image: ${GATEWAY_REGISTRY_IMAGE}:latest
     script:
-        - ls -al
         - APP_ENV=test composer install --no-interaction
         - yarn install
         - yarn dev
