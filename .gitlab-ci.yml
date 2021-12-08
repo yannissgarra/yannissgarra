@@ -1,11 +1,10 @@
 stages:
     - build-images
     - test
-    - build
     - deploy
 
 variables:
-    GATEWAY_REGISTRY_BASE_IMAGE: ${CI_REGISTRY_IMAGE}/gateway
+    GATEWAY_REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE}/gateway
 
 build-gateway-images:
     stage: build-images
@@ -25,22 +24,14 @@ build-gateway-images:
     after_script:
         - docker logout ${CI_REGISTRY}
     script:
-        - docker build -t ${GATEWAY_REGISTRY_BASE_IMAGE}:latest -f ${DOCKER_CONTEXT}/Dockerfile ${DOCKER_CONTEXT}
-        - docker push ${GATEWAY_REGISTRY_BASE_IMAGE}:latest
-        - docker build -t ${GATEWAY_REGISTRY_BASE_IMAGE}/build:latest -f ${DOCKER_CONTEXT}/build.Dockerfile ${DOCKER_CONTEXT}
-        - docker push ${GATEWAY_REGISTRY_BASE_IMAGE}/build:latest
-        - docker build -t ${GATEWAY_REGISTRY_BASE_IMAGE}/dev:latest -f ${DOCKER_CONTEXT}/dev.Dockerfile ${DOCKER_CONTEXT}
-        - docker push ${GATEWAY_REGISTRY_BASE_IMAGE}/dev:latest
-        - docker build -t ${GATEWAY_REGISTRY_BASE_IMAGE}/test:latest -f ${DOCKER_CONTEXT}/test.Dockerfile ${DOCKER_CONTEXT}
-        - docker push ${GATEWAY_REGISTRY_BASE_IMAGE}/test:latest
-        - docker build -t ${GATEWAY_REGISTRY_BASE_IMAGE}/deploy:latest -f ${DOCKER_CONTEXT}/deploy.Dockerfile ${DOCKER_CONTEXT}
-        - docker push ${GATEWAY_REGISTRY_BASE_IMAGE}/deploy:latest
+        - docker build -t ${GATEWAY_REGISTRY_IMAGE}:latest -f ${DOCKER_CONTEXT}/Dockerfile ${DOCKER_CONTEXT}
+        - docker push ${GATEWAY_REGISTRY_IMAGE}:latest
 
 test-gateway:
     stage: test
     only:
         - tags
-    image: ${GATEWAY_REGISTRY_BASE_IMAGE}/test:latest
+    image: ${GATEWAY_REGISTRY_IMAGE}:latest
     script:
         - APP_ENV=test composer install --no-interaction
         - yarn install
@@ -48,33 +39,22 @@ test-gateway:
         - php-cs-fixer fix ./src --dry-run --diff
         - ./vendor/bin/phpunit
 
-build-gateway:
-    stage: build
-    only:
-        - tags
-    image: ${GATEWAY_REGISTRY_BASE_IMAGE}/build:latest
-    script:
-        - APP_ENV=prod APP_DEBUG=0 composer install --no-dev --no-interaction --optimize-autoloader
-        - APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
-        - yarn install
-        - yarn build
-        - tar -cvzf ${CI_COMMIT_SHA}.tar.gz ./bin/console ./config ./migrations ./public ./src ./templates ./translations ./vendor
-    artifacts:
-        paths:
-            - ${CI_COMMIT_SHA}.tar.gz
-        expire_in: 1 day
-
 deploy-gateway:
     stage: deploy
     only:
         - tags
-    image: ${GATEWAY_REGISTRY_BASE_IMAGE}/deploy:latest
+    image: ${GATEWAY_REGISTRY_IMAGE}:latest
     before_script:
         - mkdir -p ~/.ssh
         - eval $(ssh-agent -s)
         - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     script:
+        - APP_ENV=prod APP_DEBUG=0 composer install --no-dev --no-interaction --optimize-autoloader
+        - APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+        - yarn install
+        - yarn build
+        - tar -cvzf ${CI_COMMIT_SHA}.tar.gz ./bin/console ./config ./migrations ./public ./src ./templates ./translations ./vendor
         - scp -p ${CI_COMMIT_SHA}.tar.gz ${SSH_USER}@${SSH_HOST}:${SSH_PATH}/releases
         - |
             ssh ${SSH_USER}@${SSH_HOST} /bin/bash -s << EOT
