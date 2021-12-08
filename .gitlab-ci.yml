@@ -80,8 +80,8 @@ deploy-gateway:
             ssh ${SSH_USER}@${SSH_HOST} /bin/bash -s << EOT
             cd ${SSH_PATH}
             mkdir -p releases/${CI_COMMIT_TAG}
-            tar -xvzf ${CI_COMMIT_SHA}.tar.gz -C releases/${CI_COMMIT_TAG}/
+            tar -xvzf releases/${CI_COMMIT_SHA}.tar.gz -C releases/${CI_COMMIT_TAG}/
             cp shared/.env.local.php releases/${CI_COMMIT_TAG}/.env.local.php
-            rm ${CI_COMMIT_SHA}.tar.gz
+            rm releases/${CI_COMMIT_SHA}.tar.gz
             ln -sfn releases/${CI_COMMIT_TAG} current
             EOT
