@@ -3,7 +3,8 @@ version: '3.9'
 services:
   gateway:
     build:
-      context: ./docker/gateway
+      context: .
+      dockerfile: ./docker/gateway/Dockerfile
     depends_on:
       - database
     volumes:

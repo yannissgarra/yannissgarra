@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean
 
 # copy php ini configuration
-COPY ./php/conf.d/php.ini /usr/local/etc/php/conf.d/docker-php.ini
+COPY ./docker/gateway/php/conf.d/php.ini /usr/local/etc/php/conf.d/docker-php.ini
 
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
@@ -41,13 +41,10 @@ RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
 # copy xdebug ini configuration
-COPY ./php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/docker-xdebug.ini
+COPY ./docker/gateway/php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/docker-xdebug.ini
 
 # install ssh
 RUN apt-get update && apt-get install -y --no-install-recommends openssh-client && apt-get clean
 
 # set working directory
 WORKDIR /www
-
-# add code to working directory
-COPY . /www

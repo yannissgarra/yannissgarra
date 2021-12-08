@@ -16,15 +16,13 @@ build-gateway-images:
     image: docker:latest
     services:
         - docker:dind
-    variables:
-        DOCKER_CONTEXT: ./docker/gateway
     before_script:
         - docker info
         - docker login ${CI_REGISTRY} --username ${CI_REGISTRY_USER} --password ${CI_REGISTRY_PASSWORD}
     after_script:
         - docker logout ${CI_REGISTRY}
     script:
-        - docker build -t ${GATEWAY_REGISTRY_IMAGE}:latest -f ${DOCKER_CONTEXT}/Dockerfile ${DOCKER_CONTEXT}
+        - docker build -t ${GATEWAY_REGISTRY_IMAGE}:latest -f ./docker/gateway/Dockerfile .
         - docker push ${GATEWAY_REGISTRY_IMAGE}:latest
 
 test-gateway:
