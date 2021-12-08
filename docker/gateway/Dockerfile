@@ -18,6 +18,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY ./php/conf.d/php.ini /usr/local/etc/php/conf.d/docker-php.ini
 
 # set code to working directory
-RUN mkdir -p /www
-COPY . /www
 WORKDIR /www
+COPY . /www
