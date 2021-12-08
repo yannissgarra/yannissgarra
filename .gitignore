@@ -25,7 +25,6 @@
 ###> private ###
 /bundles
 /public/uploads
-/public/dist
 ###< private ###
 
 ###> symfony/webpack-encore-bundle ###
