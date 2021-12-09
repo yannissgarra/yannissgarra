@@ -9,6 +9,16 @@
 
         <title>{% block title %}{{ employee().firstName }} {{ employee().lastName }}{% endblock %}</title>
         
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4ZYNRV841"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-T4ZYNRV841');
+        </script>
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
