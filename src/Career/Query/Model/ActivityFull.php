@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 final class ActivityFull extends ActivityMedium
 {
     /**
-     * @var Mission[]
+     * @var Collection|Mission[]
      */
     private Collection $missions;
 

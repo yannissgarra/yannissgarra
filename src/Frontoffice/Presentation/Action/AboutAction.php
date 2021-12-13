@@ -9,7 +9,7 @@ use App\Frontoffice\Query\Query\AboutQuery;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\Uuid;
-use Webmunkeez\ADRBundle\Annotation\Template;
+use Webmunkeez\ADRBundle\Attribute\Template;
 use Webmunkeez\CQRSBundle\Query\QueryBusAwareInterface;
 use Webmunkeez\CQRSBundle\Query\QueryBusAwareTrait;
 

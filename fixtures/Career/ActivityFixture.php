@@ -4,6 +4,7 @@ namespace App\Fixture\Career;
 
 use App\Career\Domain\Model\Activity;
 use App\Career\Domain\Model\ActivityTranslation;
+use App\Career\Domain\Model\ActivityType;
 use App\Fixture\Language\LanguageFixture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -18,7 +19,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'reference' => 'Baccalaureate',
             'started_at' => '2005-09-01',
             'stopped_at' => '2008-06-30',
-            'type' => 'training',
+            'type' => ActivityType::Training,
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-berlioz',
             'translations' => [
@@ -37,7 +38,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'reference' => 'DUT SRC',
             'started_at' => '2008-09-01',
             'stopped_at' => '2010-06-30',
-            'type' => 'training',
+            'type' => ActivityType::Training,
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-uga',
             'translations' => [
@@ -56,7 +57,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'reference' => 'Licence Pro SMIN',
             'started_at' => '2010-09-01',
             'stopped_at' => '2011-06-30',
-            'type' => 'training',
+            'type' => ActivityType::Training,
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-uga',
             'translations' => [
@@ -75,7 +76,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'reference' => 'Dev Mezcalito v1',
             'started_at' => '2010-08-01',
             'stopped_at' => '2014-10-31',
-            'type' => 'work',
+            'type' => ActivityType::Work,
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-mezcalito',
             'translations' => [
@@ -92,7 +93,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'reference' => 'Fondateur Cuisine Etudiant',
             'started_at' => '2009-02-01',
             'stopped_at' => '2015-12-31',
-            'type' => 'project',
+            'type' => ActivityType::Project,
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-cuisinetudiant',
             'translations' => [
@@ -111,7 +112,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'reference' => 'Dev Mezcalito v2',
             'started_at' => '2016-02-01',
             'stopped_at' => '2019-11-30',
-            'type' => 'work',
+            'type' => ActivityType::Work,
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-mezcalito',
             'translations' => [
@@ -127,7 +128,7 @@ class ActivityFixture extends Fixture implements DependentFixtureInterface
             'id' => '843a0158-8e86-4319-b1e1-e40b7ca95ddb',
             'reference' => 'Freelance',
             'started_at' => '2019-12-01',
-            'type' => 'work',
+            'type' => ActivityType::Work,
             'employee_reference' => 'employee-yannis-sgarra',
             'place_reference' => 'place-freelance',
             'translations' => [

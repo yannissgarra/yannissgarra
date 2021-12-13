@@ -2,6 +2,7 @@
     "editor.formatOnSave": false,
     "editor.quickSuggestions": { "comments": true },
     "php.suggest.basic": false,
+    "intelephense.environment.phpVersion": "8.1.0",
     "intelephense.files.exclude": [
         "**/.git/**",
         "**/.svn/**",

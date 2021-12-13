@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Career\Query\Model;
 
+use App\Career\Domain\Model\ActivityType;
 use Symfony\Component\Uid\Uuid;
 
 class ActivityMedium extends Activity
@@ -13,7 +14,7 @@ class ActivityMedium extends Activity
     private \DateTime $startedAt;
     private ?\DateTime $stoppedAt;
     private Place $place;
-    private string $type;
+    private ActivityType $type;
 
     public function getId(): Uuid
     {
@@ -87,12 +88,12 @@ class ActivityMedium extends Activity
         return $this;
     }
 
-    public function getType(): string
+    public function getType(): ActivityType
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(ActivityType $type): self
     {
         $this->type = $type;
 

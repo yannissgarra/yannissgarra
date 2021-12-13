@@ -115,19 +115,19 @@ class Activity extends AbstractEntity
         return $this;
     }
 
-    public function getType(): string
+    public function getType(): ActivityType
     {
-        return $this->type;
+        return ActivityType::from($this->type);
     }
 
-    public function setType(string $type): self
+    public function setType(ActivityType $type): self
     {
-        $this->type = $type;
+        $this->type = $type->value;
 
         return $this;
     }
 
-    public function updateType(string $type): self
+    public function updateType(ActivityType $type): self
     {
         $this->setType($type);
         $this->updateLastUpdatedAt();

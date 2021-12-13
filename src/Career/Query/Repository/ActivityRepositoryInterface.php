@@ -12,7 +12,7 @@ use Webmunkeez\CQRSDoctrineBundle\Repository\ReadRepositoryInterface;
 interface ActivityRepositoryInterface extends ReadRepositoryInterface
 {
     /**
-     * @return ActivityFull[]
+     * @return Collection|ActivityFull[]
      */
     public function findByEmployee(Uuid $employeeId, Uuid $languageId): Collection;
 }

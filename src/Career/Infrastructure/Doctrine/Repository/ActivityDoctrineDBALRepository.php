@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Career\Infrastructure\Doctrine\Repository;
 
+use App\Career\Domain\Model\ActivityType;
 use App\Career\Query\Model\ActivityFull;
 use App\Career\Query\Model\PlaceMedium;
 use App\Career\Query\Repository\ActivityRepositoryInterface;
@@ -51,7 +52,7 @@ final class ActivityDoctrineDBALRepository extends AbstractDoctrineDBALRepositor
                     ->setDescription($data['place_description'])
                     ->setLink($data['place_link'])
                 )
-                ->setType($data['activity_type']);
+                ->setType(ActivityType::from($data['activity_type']));
 
             $activities->add($activity);
         }
